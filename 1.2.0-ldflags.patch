@@ -1,0 +1,22 @@
+--- origsrc/nautilus-follow-symlink-1.2.0/configure.ac	2012-08-14 05:54:31.000000000 -0500
++++ src/nautilus-follow-symlink-1.2.0/configure.ac	2012-11-13 02:18:05.560895600 -0600
+@@ -28,8 +28,6 @@ dnl CPPFLAGS="$CPPFLAGS"
+ #  Debian's GCC 4.7.1 though (?)
+ #  (solution was adding extern definition of ferror_unlocked
+ CFLAGS="-O2 -Wall -std=gnu99 $CFLAGS"
+-# -z relro -> read-only relocation ld flag
+-LDFLAGS="-Wl,--as-needed -Wl,-z,relro $LDFLAGS"
+ 
+ # libtool, DISABLE_STATIC should go before PROG_LIBTOOL
+ AM_DISABLE_STATIC
+--- origsrc/nautilus-follow-symlink-1.2.0/src/Makefile.am	2012-08-14 05:23:11.000000000 -0500
++++ src/nautilus-follow-symlink-1.2.0/src/Makefile.am	2012-11-13 02:14:20.049986100 -0600
+@@ -17,7 +17,7 @@ libnautilus_follow_symlink_la_SOURCES =
+ libnautilus_follow_symlink_la_LIBADD = $(NAUTILUS_EXTENSION_LIBS)
+ libnautilus_follow_symlink_la_CFLAGS = $(NAUTILUS_EXTENSION_CFLAGS)
+ # There's really no need to have versioned file names
+-libnautilus_follow_symlink_la_LDFLAGS = -avoid-version
++libnautilus_follow_symlink_la_LDFLAGS = -module -avoid-version -no-undefined
+ # See e.g. <http://www.seul.org/docs/autotut/#libtool> for version instructions
+ #libnautilus_follow_symlink_la_LDFLAGS = -version-info 0:0:0
+ 
