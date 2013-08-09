@@ -13,4 +13,6 @@ HOMEPAGE="http://p.outlyer.net/nautilus-follow-symlink/"
 SRC_URI="${HOMEPAGE}/files/${NAME}-${VERSION}.tar.gz"
 PATCH_URI="1.2.0-ldflags.patch"
 
+# override '-pedantic-errors' default, with which Pango headers are incompatible
+CPPFLAGS=" "
 KEEP_LA_FILES="none"
